@@ -16,7 +16,7 @@ CORS(app)
 class Food(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     menu_type = db.Column(db.String, nullable=False)
-    title = db.Column(db.String, nullable=False, unique=True)
+    title = db.Column(db.String, nullable=False)
     price = db.Column(db.String, nullable=False)
     
     def __init__(self, menu_type, title, price):
@@ -33,7 +33,6 @@ multiple_food_schema = FoodSchema(many=True)
 
 @app.route("/food/add", methods=["POST"])
 def add_food():
-
     post_data = request.get_json()
     title = post_data.get("title")
     price = post_data.get("price")
